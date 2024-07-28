@@ -27,7 +27,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
             {
                 Name = "User",
                 NormalizedName = "USER"
-            }
+            },
         };
         builder.Entity<IdentityRole>().HasData(roles);
     }

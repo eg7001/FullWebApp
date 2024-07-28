@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240725211055_InitialCreate2")]
-    partial class InitialCreate2
+    [Migration("20240728142514_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,13 +119,13 @@ namespace FullWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b49b4e6d-6179-4022-a029-2483d06a44e5",
+                            Id = "4d983962-fb2b-4e3d-9e1c-0ebc53511bf1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "22a9a3ca-ad0f-4c91-92f0-4f885a69432b",
+                            Id = "7ae70462-84c5-4ff5-854e-3a13f339c3a9",
                             Name = "User",
                             NormalizedName = "USER"
                         });

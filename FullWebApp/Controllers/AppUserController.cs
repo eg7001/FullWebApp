@@ -1,4 +1,5 @@
 ﻿using FullWebApp.DTOs.AppUserDTOs;
+using FullWebApp.Interfaces;
 using FullWebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,13 @@ public class AppUserController : ControllerBase
 {
     
     private readonly UserManager<AppUser> _userManager;
-    public AppUserController(UserManager<AppUser> userManager)
+    private readonly ITokenService _tokenService;
+    private readonly SignInManager<AppUser> _signInManager;
+    public AppUserController(UserManager<AppUser> userManager, ITokenService tokenService,SignInManager<AppUser> signInManager)
     {
         _userManager = userManager;
+        _tokenService = tokenService;
+        _signInManager = signInManager;
     }
 
     [Route("register")]
@@ -24,7 +29,7 @@ public class AppUserController : ControllerBase
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest("Te Model State");
             }
 
             var appUser = new AppUser
@@ -40,7 +45,13 @@ public class AppUserController : ControllerBase
                 var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
                 if (roleResult.Succeeded)
                 {
-                    return Ok("User Created");
+                    return Ok(
+                        new NewUserDto
+                        {
+                            UserName = appUser.UserName,
+                            Email = appUser.Email,
+                            Token = _tokenService.CreateToken(appUser)
+                        });
                 }
                 else
                 {
@@ -54,9 +65,41 @@ public class AppUserController : ControllerBase
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            Console.WriteLine("Te try catchi " + e);
             throw;
         } 
     }
+
+    [Route("login")]
+    [HttpPost]
+    public async Task<IActionResult> Login(LoginDto loginDto)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName.ToLower() == loginDto.Username.ToLower());
+        if (user == null)
+        {
+            return Unauthorized("Invalid username");
+        }
+
+        var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
+
+        if (!result.Succeeded)
+        {
+            return Unauthorized("Password doesn't match");
+        }
+        return Ok(
+            new NewUserDto
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                Token = _tokenService.CreateToken(user)
+            }
+        );
+    }
+    
         
 }
