@@ -11,8 +11,11 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         
     }
-    
-    // public DbSet<QkaTeDush> {get;set;}
+    public DbSet<Anime> Animes { get; set; }
+
+    public DbSet<Manga> Mangas { get; set; }
+
+    // public DbSet<QkaTeDush> emri {get;set;}
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
