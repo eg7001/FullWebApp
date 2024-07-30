@@ -1,6 +1,6 @@
 ﻿namespace FullWebApp.Models;
 
-public class AnimeComments
+public class SavingGoal
 {
     
 }

@@ -7,13 +7,10 @@ namespace FullWebApp.Context;
 
 public class ApplicationDbContext : IdentityDbContext<AppUser>
 {
-    public ApplicationDbContext(DbContextOptions dbContextOptions):base(dbContextOptions)
+    public ApplicationDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
     {
-        
-    }
-    public DbSet<Anime> Animes { get; set; }
 
-    public DbSet<Manga> Mangas { get; set; }
+    }
 
     // public DbSet<QkaTeDush> emri {get;set;}
     protected override void OnModelCreating(ModelBuilder builder)

@@ -1,6 +1,6 @@
 ﻿namespace FullWebApp.Interfaces;
 
-public interface IMangaRepository
+public interface ITransactionRepository
 {
     
 }

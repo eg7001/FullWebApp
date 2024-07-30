@@ -4,7 +4,7 @@ namespace FullWebApp.Controllers;
 
 [ApiController]
 
-public class WorkoutController : ControllerBase
+public class TransactionController : ControllerBase
 {
     
 }
