@@ -2,6 +2,7 @@ using System.Runtime.InteropServices.Marshalling;
 using FullWebApp.Context;
 using FullWebApp.Interfaces;
 using FullWebApp.Models;
+using FullWebApp.Repositories;
 using FullWebApp.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -82,7 +83,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddScoped<ITokenService, TokenService>();
-
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

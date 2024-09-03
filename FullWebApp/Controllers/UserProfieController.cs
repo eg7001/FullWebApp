@@ -1,22 +1,25 @@
-using FullWebApp.Context;
 using FullWebApp.DTOs.UserProfileDTOs;
 using FullWebApp.Interfaces;
+using FullWebApp.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FullWebApp.Controllers;
-
-public class UserProfieController
+[Route("api/userProfileController")]
+[ApiController]
+public class UserProfieController: ControllerBase
 {
-    private readonly ApplicationDbContext _dbContext;
     private readonly IUserProfileRepository _profileRepo;
 
-    public UserProfieController()
+    public UserProfieController(IUserProfileRepository profileRepo)
     {
-        
+        _profileRepo = profileRepo;
     }
     [HttpPost]
+    [Route("create")]
     public async Task<IActionResult> CreateUserProfile([FromBody] AddUserProfileDto profileDto)
     {
-        return 
+        var userprofile = _profileRepo.CreateUserProfile(profileDto); 
+        return Ok(userprofile);
     }
 }
