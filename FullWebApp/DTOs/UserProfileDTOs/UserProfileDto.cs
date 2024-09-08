@@ -1,6 +1,6 @@
 namespace FullWebApp.DTOs.UserProfileDTOs;
 
-public class AddUserProfileDto
+public class UserProfileDto
 {
     public string? FirstName { get; set; }
     public string? LastName { get; set; }

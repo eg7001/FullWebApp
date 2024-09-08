@@ -17,16 +17,46 @@ public class UserProfileRepository : IUserProfileRepository
     {
         _dbContext = dbContext;
     }
-    public async Task<UserProfile?> CreateUserProfile(AddUserProfileDto dto)
+
+    public async Task<UserProfile?> GetUserProfileById(int id)
     {
-        UserProfile profile = new UserProfile
-        {
-            FirstName = dto.FirstName,
-            LastName = dto.LastName,
-            Email = dto.Email
-        };
-        _dbContext.AddAsync(profile);
-        _dbContext.SaveChangesAsync();
+        return await _dbContext.UserProfiles.FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task<UserProfile?> CreateUserProfile(UserProfile profile)
+    {
+        await _dbContext.AddAsync(profile);
+        await _dbContext.SaveChangesAsync();
         return profile;
+    }
+
+    public async Task<UserProfile?> UpdateUserProfile(int id, UserProfileDto userProfileDto)
+    {
+        var exists = await _dbContext.UserProfiles.FirstOrDefaultAsync(x => x.Id == id);
+        if (exists == null)
+        {
+            return null;
+        }
+
+        exists.Email = userProfileDto.Email;
+        exists.FirstName = userProfileDto.FirstName;
+        exists.LastName = userProfileDto.LastName;
+
+        await _dbContext.SaveChangesAsync();
+
+        return exists;
+    }
+
+    public async Task<UserProfile?> DeleteAsync(int id)
+    {
+        var userProfileModel = await _dbContext.UserProfiles.FirstOrDefaultAsync(x => x.Id == id);
+        if (userProfileModel == null)
+        {
+            return null;
+        }
+
+        _dbContext.UserProfiles.Remove(userProfileModel);
+        await _dbContext.SaveChangesAsync();
+        return userProfileModel;
     }
 }

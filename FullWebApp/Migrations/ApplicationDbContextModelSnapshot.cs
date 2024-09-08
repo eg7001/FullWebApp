@@ -88,11 +88,11 @@ namespace FullWebApp.Migrations
 
             modelBuilder.Entity("FullWebApp.Models.UserProfile", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UserId"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .HasColumnType("longtext");
@@ -103,7 +103,7 @@ namespace FullWebApp.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("UserProfiles");
                 });
@@ -136,13 +136,13 @@ namespace FullWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "352da791-a7fc-4615-9554-e34422476ab3",
+                            Id = "23e45a3f-24a1-4261-8ea2-5ea8f65dca10",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "d8999ebd-7b50-4322-b607-56d677fc1e0e",
+                            Id = "c316dcc9-2851-43d4-9a33-ca1835d91846",
                             Name = "User",
                             NormalizedName = "USER"
                         });

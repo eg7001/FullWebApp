@@ -75,7 +75,7 @@ namespace FullWebApp.Migrations
                 name: "UserProfiles",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -86,7 +86,7 @@ namespace FullWebApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserProfiles", x => x.UserId);
+                    table.PrimaryKey("PK_UserProfiles", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -222,8 +222,8 @@ namespace FullWebApp.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "352da791-a7fc-4615-9554-e34422476ab3", null, "Admin", "ADMIN" },
-                    { "d8999ebd-7b50-4322-b607-56d677fc1e0e", null, "User", "USER" }
+                    { "23e45a3f-24a1-4261-8ea2-5ea8f65dca10", null, "Admin", "ADMIN" },
+                    { "c316dcc9-2851-43d4-9a33-ca1835d91846", null, "User", "USER" }
                 });
 
             migrationBuilder.CreateIndex(

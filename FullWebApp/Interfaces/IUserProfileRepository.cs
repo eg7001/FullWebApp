@@ -6,6 +6,8 @@ namespace FullWebApp.Interfaces;
 
 public interface IUserProfileRepository
 {
-    public Task<UserProfile?> CreateUserProfile(AddUserProfileDto dto);
-    
+    Task<UserProfile?> GetUserProfileById(int id);
+    Task<UserProfile?> CreateUserProfile(UserProfile userProfile);
+    Task<UserProfile?> UpdateUserProfile(int id, UserProfileDto userProfileDto);
+    Task<UserProfile?> DeleteAsync(int id);
 }
