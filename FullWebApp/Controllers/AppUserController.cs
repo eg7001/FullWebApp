@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FullWebApp.Controllers;
-[Route("api/account")]
+[Route("api/appUSer")]
 [ApiController]
 public class AppUserController : ControllerBase
 {

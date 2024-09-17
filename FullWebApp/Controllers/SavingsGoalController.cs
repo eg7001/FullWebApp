@@ -1,15 +1,52 @@
 ﻿using System.Runtime.InteropServices.JavaScript;
+using FullWebApp.DTOs.SavigngsGoalDto;
+using FullWebApp.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FullWebApp.Controllers;
 
-public class SavingsGoalController
+[ApiController]
+public class SavingsGoalController: ControllerBase
 {
-    public int SavingsId { get; set; }
-    public int? UserId { get; set; }
-    public string? Name { get; set; }
-    public double Target { get; set; }
-    public double? Current { get; set; }
-    public DateTime Deadline { get; set; }
-    public DateTime CreatedAt{ get; set; } = DateTime.Now;
+    private readonly ISavingsGoalRepository _savingsRepo;
+
+    public SavingsGoalController(ISavingsGoalRepository savingsRepo)
+    {
+        _savingsRepo = savingsRepo;
+    }
+    [HttpPost]
+    [Route("createSaving")]
+    public async Task<IActionResult> CreateSavingsGoal(SavingsGoalDto dto)
+    {
+        return Ok("Hale tu e ba ");
+    }
+
+    [HttpGet]
+    [Route("getById")]
+    public async Task<IActionResult> GetSavingsById()
+    {   
+        return Ok(); 
+    }
     
+    [HttpGet]
+    [Route("getByUser")]
+    public async Task<IActionResult> GetSavingsGoalByUser( /* duhet me pas diqka qitu po qka se di*/)
+    {
+        return Ok("Aight");
+    }
+
+    [HttpPut]
+    [Route("update{id:int}")]
+    public async Task<IActionResult> UpdateSavingsGOal(SavingsGoalDto dto)
+    {
+        return Ok("Hale vllaqko prrrit");
+    }
+    
+    [HttpDelete]
+    [Route("deleteSavings{id:int}")]
+    public async Task<IActionResult> DeleteSavingsGoal([FromRoute] int id)
+    {
+        return Ok("Ne punime e siper");
+    }
 }

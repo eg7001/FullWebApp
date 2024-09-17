@@ -84,6 +84,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+builder.Services.AddScoped<ISavingsGoalRepository, SavingsGoalRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,6 +1,10 @@
-﻿namespace FullWebApp.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class AccountController
+namespace FullWebApp.Controllers;
+
+[Route("api/account")]
+[ApiController]
+public class   AccountController: ControllerBase
 {
     
 }
