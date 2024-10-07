@@ -1,4 +1,5 @@
-﻿using FullWebApp.Models;
+﻿using System.Net;
+using FullWebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,9 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
 
     // public DbSet<QkaTeDush> emri {get;set;}
     public DbSet<UserProfile> UserProfiles {get; set; }
+    public DbSet<Account> Accounts { get; set; }
+    public DbSet<SavingGoal> SavingGoals { get; set; }
+    public DbSet<Transaction> Transactions { get; set; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {

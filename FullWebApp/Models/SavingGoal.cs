@@ -2,8 +2,11 @@
 
 public class SavingGoal
 {
-    public int SavingsId { get; set; }
-    public int? UserId { get; set; }
+    public int Id { get; set; }
+    public string? AppUserId { get; set; }
+    public AppUser AppUser { get; set; }
+    
+    
     public string? Name { get; set; }
     public double Target { get; set; }
     public double? Current { get; set; }
