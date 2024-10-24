@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241012112144_InitialCreate")]
+    [Migration("20241024195441_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -116,6 +116,9 @@ namespace FullWebApp.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
+                    b.Property<int?>("UserProfileId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -163,11 +166,11 @@ namespace FullWebApp.Migrations
 
             modelBuilder.Entity("FullWebApp.Models.Transaction", b =>
                 {
-                    b.Property<int>("TransactionId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("TransactionId"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("AccountId")
                         .HasColumnType("int");
@@ -178,12 +181,17 @@ namespace FullWebApp.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("longtext");
 
+                    b.Property<int>("UserProfileId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Value")
                         .HasColumnType("double");
 
-                    b.HasKey("TransactionId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("UserProfileId");
 
                     b.ToTable("Transactions");
                 });
@@ -197,6 +205,9 @@ namespace FullWebApp.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AppUserId")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("AppUserId1")
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Email")
@@ -210,7 +221,7 @@ namespace FullWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserId1");
 
                     b.ToTable("UserProfiles");
                 });
@@ -243,13 +254,13 @@ namespace FullWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "752f174f-07cc-4917-858d-b28956e8a435",
+                            Id = "15feade2-5de4-4aab-b69e-16d7200aed29",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "9f085f26-6e06-4410-b344-15b7ce18a9b9",
+                            Id = "a609c584-7267-43f1-8cc1-1e990b6e72ae",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -385,14 +396,22 @@ namespace FullWebApp.Migrations
                         .WithMany("Transactions")
                         .HasForeignKey("AccountId");
 
+                    b.HasOne("FullWebApp.Models.UserProfile", "UserProfile")
+                        .WithMany()
+                        .HasForeignKey("UserProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Account");
+
+                    b.Navigation("UserProfile");
                 });
 
             modelBuilder.Entity("FullWebApp.Models.UserProfile", b =>
                 {
                     b.HasOne("FullWebApp.Models.AppUser", "AppUser")
                         .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId1");
 
                     b.Navigation("AppUser");
                 });

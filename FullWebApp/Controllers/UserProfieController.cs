@@ -2,6 +2,7 @@ using FullWebApp.DTOs.UserProfileDTOs;
 using FullWebApp.Interfaces;
 using FullWebApp.Mappers;
 using FullWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,14 +17,15 @@ public class UserProfieController: ControllerBase
     {
         _profileRepo = profileRepo;
     }
+    [Authorize]
     [HttpPost]
     [Route("create")]
     public async Task<IActionResult> CreateUserProfile([FromBody] UserProfileDto userProfileDto)
     {
-        /*if (ModelState!.IsValid)
+        if (ModelState!.IsValid)
         {
             return BadRequest(ModelState);
-        }*/
+        }
         var userprofile = userProfileDto.ToUserProfileFromCreate();
         await _profileRepo.CreateUserProfile(userprofile);
         return Ok(userprofile);

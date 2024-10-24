@@ -2,7 +2,10 @@
 
 public class Transaction
 {
-    public int TransactionId { get; set; }
+    public int Id { get; set; }
+
+    public UserProfile UserProfile { get; set; }
+    
     public int? AccountId{ get; set; }
     public Account Account { get; set; }
     

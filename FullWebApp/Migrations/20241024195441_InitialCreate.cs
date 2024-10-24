@@ -42,6 +42,7 @@ namespace FullWebApp.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    UserProfileId = table.Column<int>(type: "int", nullable: true),
                     AccountId = table.Column<int>(type: "int", nullable: true),
                     SavingGoalId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
@@ -259,7 +260,9 @@ namespace FullWebApp.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    AppUserId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    AppUserId = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AppUserId1 = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     FirstName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -272,8 +275,8 @@ namespace FullWebApp.Migrations
                 {
                     table.PrimaryKey("PK_UserProfiles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserProfiles_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
+                        name: "FK_UserProfiles_AspNetUsers_AppUserId1",
+                        column: x => x.AppUserId1,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 })
@@ -283,8 +286,9 @@ namespace FullWebApp.Migrations
                 name: "Transactions",
                 columns: table => new
                 {
-                    TransactionId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserProfileId = table.Column<int>(type: "int", nullable: false),
                     AccountId = table.Column<int>(type: "int", nullable: true),
                     Value = table.Column<double>(type: "double", nullable: false),
                     Title = table.Column<string>(type: "longtext", nullable: true)
@@ -293,12 +297,18 @@ namespace FullWebApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Transactions", x => x.TransactionId);
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Transactions_Accounts_AccountId",
                         column: x => x.AccountId,
                         principalTable: "Accounts",
                         principalColumn: "AccountId");
+                    table.ForeignKey(
+                        name: "FK_Transactions_UserProfiles_UserProfileId",
+                        column: x => x.UserProfileId,
+                        principalTable: "UserProfiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -307,8 +317,8 @@ namespace FullWebApp.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "752f174f-07cc-4917-858d-b28956e8a435", null, "Admin", "ADMIN" },
-                    { "9f085f26-6e06-4410-b344-15b7ce18a9b9", null, "User", "USER" }
+                    { "15feade2-5de4-4aab-b69e-16d7200aed29", null, "Admin", "ADMIN" },
+                    { "a609c584-7267-43f1-8cc1-1e990b6e72ae", null, "User", "USER" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -364,9 +374,14 @@ namespace FullWebApp.Migrations
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserProfiles_AppUserId",
+                name: "IX_Transactions_UserProfileId",
+                table: "Transactions",
+                column: "UserProfileId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserProfiles_AppUserId1",
                 table: "UserProfiles",
-                column: "AppUserId");
+                column: "AppUserId1");
         }
 
         /// <inheritdoc />
@@ -394,13 +409,13 @@ namespace FullWebApp.Migrations
                 name: "Transactions");
 
             migrationBuilder.DropTable(
-                name: "UserProfiles");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Accounts");
+
+            migrationBuilder.DropTable(
+                name: "UserProfiles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
