@@ -7,7 +7,7 @@ public class Account
     public string? AppUserId { get; set; }
     public AppUser? AppUser { get; set; }
 
-    public int? TramsactopmId { get; set; }
+    public int? TransactionId { get; set; }
     public List<Transaction> Transactions { get; set; }
     
     public string? Name { get; set; }

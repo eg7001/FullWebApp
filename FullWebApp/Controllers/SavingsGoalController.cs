@@ -10,7 +10,7 @@ namespace FullWebApp.Controllers;
 public class SavingsGoalController: ControllerBase
 {
     private readonly ISavingsGoalRepository _savingsRepo;
-
+    /*
     public SavingsGoalController(ISavingsGoalRepository savingsRepo)
     {
         _savingsRepo = savingsRepo;
@@ -31,7 +31,7 @@ public class SavingsGoalController: ControllerBase
     
     [HttpGet]
     [Route("getByUser")]
-    public async Task<IActionResult> GetSavingsGoalByUser( /* duhet me pas diqka qitu po qka se di*/)
+    public async Task<IActionResult> GetSavingsGoalByUser( /* duhet me pas diqka qitu po qka se di //////)
     {
         return Ok("Aight");
     }
@@ -49,4 +49,5 @@ public class SavingsGoalController: ControllerBase
     {
         return Ok("Ne punime e siper");
     }
+    */
 }

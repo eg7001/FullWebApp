@@ -98,7 +98,9 @@ public class AppUserController : ControllerBase
             {
                 UserName = user.UserName,
                 Email = user.Email,
-                Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
+                AccountId = user.AccountId,
+                SavingsGoalId = user.SavingGoalId
             }
         );
     }

@@ -30,7 +30,7 @@ public class UserProfieController: ControllerBase
         await _profileRepo.CreateUserProfile(userprofile);
         return Ok(userprofile);
     }
-
+    [Authorize]
     [HttpGet]
     [Route("{id:int}")]
     public  async Task<IActionResult> GetById([FromRoute] int id)
@@ -43,7 +43,8 @@ public class UserProfieController: ControllerBase
 
         return Ok(userProfile.ToDtoFromProfile());
     }
-
+    
+    [Authorize]
     [HttpPut]
     [Route("{id:int}")]
     public async Task<IActionResult> UpdateUserProfile([FromRoute] int id, [FromBody] UserProfileDto profileDto)
@@ -56,7 +57,8 @@ public class UserProfieController: ControllerBase
 
         return Ok(userProfileModel.ToDtoFromProfile());
     }
-
+    
+    [Authorize]
     [HttpDelete]
     [Route("remove/{id:int}")]
     public async Task<IActionResult> DeleteProfile([FromRoute] int id)
