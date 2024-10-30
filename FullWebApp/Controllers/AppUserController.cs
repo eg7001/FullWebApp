@@ -51,7 +51,6 @@ public class AppUserController : ControllerBase
                             UserName = appUser.UserName,
                             Email = appUser.Email,
                             Token = _tokenService.CreateToken(appUser),
-                            AccountId= appUser.AccountId,
                             SavingsGoalId = appUser.SavingGoalId
                         });
                 }
@@ -99,7 +98,6 @@ public class AppUserController : ControllerBase
                 UserName = user.UserName,
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user),
-                AccountId = user.AccountId,
                 SavingsGoalId = user.SavingGoalId
             }
         );

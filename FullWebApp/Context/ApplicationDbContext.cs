@@ -21,6 +21,12 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        builder.Entity<AppUser>()
+            .HasOne(e => e.Account)
+            .WithOne(e => e.AppUser)
+            .HasForeignKey<Account>(e => e.AppUserId)
+            .IsRequired();
+        
         base.OnModelCreating(builder);
         List<IdentityRole> roles = new List<IdentityRole>
         {

@@ -1,9 +1,12 @@
-﻿namespace FullWebApp.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FullWebApp.Models;
 
 public class Account
 {
-    public int AccountId { get; set; }
+    public int Id { get; set; }
     
+    [ForeignKey("AppUser")]
     public string? AppUserId { get; set; }
     public AppUser? AppUser { get; set; }
 
@@ -16,5 +19,5 @@ public class Account
     
     
     
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime? CreatedAt { get; set; } = DateTime.Now;
 }
