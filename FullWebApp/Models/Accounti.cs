@@ -2,9 +2,10 @@
 
 namespace FullWebApp.Models;
 
-public class Account
+[Table("Accounti")]
+public class Accounti
 {
-    public int Id { get; set; }
+    public int? Id { get; set; }
     
     [ForeignKey("AppUser")]
     public string? AppUserId { get; set; }

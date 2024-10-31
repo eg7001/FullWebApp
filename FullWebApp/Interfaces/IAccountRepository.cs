@@ -5,8 +5,8 @@ namespace FullWebApp.Interfaces;
 
 public interface IAccountRepository
 {
-    Task<Account?> GetAccountById (int id);
-    Task<Account?> CreateAccount(Account account);
-    Task<Account?> UpdateAccount(int id, AccountDto accountDto);
-    Task<Account?> DeleteAsync(int id); 
+    Task<Accounti?> GetAccountById (int id);
+    Task<Accounti?> CreateAccount(Accounti account);
+    Task<Accounti?> UpdateAccount(int id, AccountDto accountDto);
+    Task<Accounti?> DeleteAsync(int id); 
 }

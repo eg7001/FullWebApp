@@ -15,19 +15,19 @@ public class AccountRepository: IAccountRepository
     {
         _dbContext = dbContext;
     }
-    public async Task<Account?> GetAccountById(int id)
+    public async Task<Accounti?> GetAccountById(int id)
     {
         return await _dbContext.Accounts.FirstOrDefaultAsync(x => x.Id == id);
     }
 
-     public async Task<Account?> CreateAccount(Account account)
+     public async Task<Accounti?> CreateAccount(Accounti account)
     {
         await _dbContext.AddAsync(account);
         await _dbContext.SaveChangesAsync();
         return account;
     }
 
-    public async Task<Account?> UpdateAccount(int id, AccountDto accountDto)
+    public async Task<Accounti?> UpdateAccount(int id, AccountDto accountDto)
     {
         var exists = await _dbContext.Accounts.FirstOrDefaultAsync(x => x.Id == id);
         if (exists == null)
@@ -35,7 +35,6 @@ public class AccountRepository: IAccountRepository
             return null;
         }
 
-        exists.AppUserId  = accountDto.Id;
         exists.TransactionId = accountDto.TransactionId;
         exists.Name = accountDto.Name;
         exists.Name = accountDto.Name;
@@ -47,7 +46,7 @@ public class AccountRepository: IAccountRepository
         return exists;
     }
 
-    public async Task<Account?> DeleteAsync(int id)
+    public async Task<Accounti?> DeleteAsync(int id)
     {
         var acountModel = await _dbContext.Accounts.FirstOrDefaultAsync(x => x.Id == id);
         if (acountModel == null)

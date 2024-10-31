@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace FullWebApp.Models;
 
+[Table("AppUser")]
 public class AppUser : IdentityUser
 {
-    public int? UserProfileId { get; set; }
-    public UserProfile UserProfile { get; set; }
-    public Account Account { get; set; }
-    public int? SavingGoalId { get; set; }
-    public List<SavingGoal> SavingGoals { get; set; }
+  
+    public int? SavingGoalId { get; set; } 
+    public List<SavingGoal> SavingGoals { get; set; } = new List<SavingGoal>();
 }

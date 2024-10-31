@@ -15,17 +15,13 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
 
     // public DbSet<QkaTeDush> emri {get;set;}
     public DbSet<UserProfile> UserProfiles {get; set; }
-    public DbSet<Account> Accounts { get; set; }
+    public DbSet<Accounti> Accounts { get; set; }
     public DbSet<SavingGoal> SavingGoals { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<AppUser>()
-            .HasOne(e => e.Account)
-            .WithOne(e => e.AppUser)
-            .HasForeignKey<Account>(e => e.AppUserId)
-            .IsRequired();
+
         
         base.OnModelCreating(builder);
         List<IdentityRole> roles = new List<IdentityRole>
