@@ -1,9 +1,11 @@
 using FullWebApp.DTOs.UserProfileDTOs;
+using FullWebApp.Extensions;
 using FullWebApp.Interfaces;
 using FullWebApp.Mappers;
 using FullWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FullWebApp.Controllers;
@@ -12,10 +14,11 @@ namespace FullWebApp.Controllers;
 public class UserProfieController: ControllerBase
 {
     private readonly IUserProfileRepository _profileRepo;
-
-    public UserProfieController(IUserProfileRepository profileRepo)
+    private readonly UserManager<AppUser> _userManager; 
+    public UserProfieController(IUserProfileRepository profileRepo, UserManager<AppUser> userManager)
     {
         _profileRepo = profileRepo;
+        _userManager = userManager;
     }
     [Authorize]
     [HttpPost]
@@ -26,6 +29,8 @@ public class UserProfieController: ControllerBase
         {
             return BadRequest(ModelState);
         }
+        var username = User.GetUsername();
+        var appUser= await _userManager.FindByNameAsync(username);
         var userprofile = userProfileDto.ToUserProfileFromCreate();
         await _profileRepo.CreateUserProfile(userprofile);
         return Ok(userprofile);
