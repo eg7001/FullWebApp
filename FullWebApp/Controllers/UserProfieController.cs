@@ -25,13 +25,13 @@ public class UserProfieController: ControllerBase
     [Route("create")]
     public async Task<IActionResult> CreateUserProfile([FromBody] UserProfileDto userProfileDto)
     {
-        if (ModelState!.IsValid)
+        /*if (ModelState!.IsValid)
         {
             return BadRequest(ModelState);
-        }
+        }*/
         var username = User.GetUsername();
         var appUser= await _userManager.FindByNameAsync(username);
-        var userprofile = userProfileDto.ToUserProfileFromCreate();
+        var userprofile = userProfileDto.ToUserProfileFromCreate(appUser.Id);
         await _profileRepo.CreateUserProfile(userprofile);
         return Ok(userprofile);
     }

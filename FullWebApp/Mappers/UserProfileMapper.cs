@@ -5,10 +5,11 @@ namespace FullWebApp.Mappers;
 
 public static class UserProfileMapper
 {
-    public static UserProfile ToUserProfileFromCreate(this UserProfileDto userProfileDto)
+    public static UserProfile ToUserProfileFromCreate(this UserProfileDto userProfileDto,string appUserId)
     {
         return new UserProfile()
         {
+            AppUserId = appUserId,
             Email = userProfileDto.Email,
             FirstName = userProfileDto.FirstName,
             LastName = userProfileDto.LastName
