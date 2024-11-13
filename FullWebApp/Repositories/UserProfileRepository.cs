@@ -4,6 +4,7 @@ using FullWebApp.DTOs.UserProfileDTOs;
 using FullWebApp.Interfaces;
 using FullWebApp.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace FullWebApp.Repositories;
@@ -12,10 +13,12 @@ public class UserProfileRepository : IUserProfileRepository
 
 {
     private readonly ApplicationDbContext _dbContext;
+    private readonly UserManager<AppUser> _userRepo;
 
-    public UserProfileRepository(ApplicationDbContext dbContext)
+    public UserProfileRepository(ApplicationDbContext dbContext,UserManager<AppUser> userRepo)
     {
         _dbContext = dbContext;
+        _userRepo = userRepo;
     }
 
     public async Task<UserProfile?> GetUserProfileById(int id)
@@ -58,5 +61,13 @@ public class UserProfileRepository : IUserProfileRepository
         _dbContext.UserProfiles.Remove(userProfileModel);
         await _dbContext.SaveChangesAsync();
         return userProfileModel;
+    }
+    public async Task<List<UserProfile?>> GetByUser(string userId){
+
+        var appUser = await _userRepo.FindByIdAsync(userId);
+        var userProfiles = _dbContext.UserProfiles.Where(a => a.AppUser.Id == userId);
+
+
+        return await userProfiles.ToListAsync();
     }
 }

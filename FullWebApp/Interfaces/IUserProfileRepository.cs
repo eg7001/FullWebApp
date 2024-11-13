@@ -10,4 +10,5 @@ public interface IUserProfileRepository
     Task<UserProfile?> CreateUserProfile(UserProfile userProfile);
     Task<UserProfile?> UpdateUserProfile(int id, UserProfileDto userProfileDto);
     Task<UserProfile?> DeleteAsync(int id);
+    Task<List<UserProfile?>> GetByUser(string userId);
 }

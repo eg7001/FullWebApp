@@ -25,10 +25,10 @@ public class UserProfieController: ControllerBase
     [Route("create")]
     public async Task<IActionResult> CreateUserProfile([FromBody] UserProfileDto userProfileDto)
     {
-        /*if (ModelState!.IsValid)
+        if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
-        }*/
+        }
         var username = User.GetUsername();
         var appUser= await _userManager.FindByNameAsync(username);
         var userprofile = userProfileDto.ToUserProfileFromCreate(appUser.Id);
@@ -40,41 +40,60 @@ public class UserProfieController: ControllerBase
     [Route("{id:int}")]
     public  async Task<IActionResult> GetById([FromRoute] int id)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         var userProfile = await _profileRepo.GetUserProfileById(id);
         if (userProfile == null)
         {
             return NotFound();
         }
-
         return Ok(userProfile.ToDtoFromProfile());
     }
-    
+    [Authorize]
+    [HttpGet]
+    public async Task<IActionResult> GetByUser(){
+        if(!ModelState.IsValid){
+            return BadRequest(ModelState);
+        }
+        var userName = User.GetUsername();
+        var appUser = await _userManager.FindByNameAsync(userName);
+
+        var userProfile = await _profileRepo.GetByUser(appUser.Id);
+        return Ok(userProfile);
+    }
+
     [Authorize]
     [HttpPut]
     [Route("{id:int}")]
     public async Task<IActionResult> UpdateUserProfile([FromRoute] int id, [FromBody] UserProfileDto profileDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         var userProfileModel =await _profileRepo.UpdateUserProfile(id, profileDto);
         if (userProfileModel == null)
         {
             return NotFound("Su gjet vllaqko");
         }
-
         return Ok(userProfileModel.ToDtoFromProfile());
     }
-    
     [Authorize]
     [HttpDelete]
     [Route("remove/{id:int}")]
     public async Task<IActionResult> DeleteProfile([FromRoute] int id)
     {
+       if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         var model = await _profileRepo.DeleteAsync(id);
         if (model == null)
         {
             return NotFound("Ja ke huq diqka");
         }
-
         return Ok(model.ToDtoFromProfile());
     }
-    
-}
+} 
