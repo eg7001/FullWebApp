@@ -1,8 +1,11 @@
 ﻿using FullWebApp.DTOs.AccountDto;
 using FullWebApp.Interfaces;
+using FullWebApp.Extensions;
 using FullWebApp.Mappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using FullWebApp.Models;
 
 namespace FullWebApp.Controllers;
 
@@ -10,12 +13,13 @@ namespace FullWebApp.Controllers;
 [ApiController]
 public class   AccountController: ControllerBase
 {
-    public IAccountRepository _accountRepo { get; set; }
+    private readonly IAccountRepository _accountRepo; 
+    private readonly UserManager<AppUser> _userRepo;
 
-    public AccountController(IAccountRepository accountRepo)
+    public AccountController(IAccountRepository accountRepo, UserManager<AppUser> userRepo)
     {
         _accountRepo = accountRepo;
-        
+        _userRepo = userRepo; 
     }
 
     [Authorize]
@@ -38,14 +42,17 @@ public class   AccountController: ControllerBase
     
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> CreateAccount([FromBody] AccountDto dto)
+    public async Task<IActionResult> CreateAccount([FromBody] CreateAccountDto dto)
     {
-         if (ModelState!.IsValid)
+         if (!ModelState.IsValid)
          {
              return BadRequest(ModelState);
          }
+         var userName = User.GetUsername();
+         var appUser = await 
+         _userRepo.FindByNameAsync(userName);
 
-         var account = dto.ToAccountFromDto();
+         var account = dto.ToAccountFromDto(appUser.Id);
          await _accountRepo.CreateAccount(account);
          return Ok(dto);
     }

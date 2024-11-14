@@ -5,13 +5,12 @@ namespace FullWebApp.Mappers;
 
 public static class AccountMappers
 {
-    public static Accounti ToAccountFromDto(this AccountDto dto)
+    public static Account ToAccountFromDto(this CreateAccountDto dto,string appUserId)
     {
-        return new Accounti
+        return new Account
         {
-            Id = dto.Id,
+            AppUserId = appUserId,
             Name = dto.Name,
-            TransactionId = dto.TransactionId,
             Type = dto.Type,
             Balance = dto.Balance
         };

@@ -22,13 +22,13 @@ namespace FullWebApp.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("FullWebApp.Models.Accounti", b =>
+            modelBuilder.Entity("FullWebApp.Models.Account", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<string>("AppUserId")
                         .HasColumnType("varchar(255)");
@@ -242,13 +242,13 @@ namespace FullWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f51a212b-fcbc-47c0-b75c-d033ef08c65a",
+                            Id = "65bb85d6-285b-4537-8663-dbe3e10bfdd0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "8b208371-0865-45f7-a63f-fc3aa4a58302",
+                            Id = "619736a2-6409-488e-8af5-5124c5302cb6",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -360,7 +360,7 @@ namespace FullWebApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("FullWebApp.Models.Accounti", b =>
+            modelBuilder.Entity("FullWebApp.Models.Account", b =>
                 {
                     b.HasOne("FullWebApp.Models.AppUser", "AppUser")
                         .WithMany()
@@ -380,7 +380,7 @@ namespace FullWebApp.Migrations
 
             modelBuilder.Entity("FullWebApp.Models.Transaction", b =>
                 {
-                    b.HasOne("FullWebApp.Models.Accounti", "Account")
+                    b.HasOne("FullWebApp.Models.Account", "Account")
                         .WithMany("Transactions")
                         .HasForeignKey("AccountId");
 
@@ -455,7 +455,7 @@ namespace FullWebApp.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FullWebApp.Models.Accounti", b =>
+            modelBuilder.Entity("FullWebApp.Models.Account", b =>
                 {
                     b.Navigation("Transactions");
                 });

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FullWebApp.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -313,8 +313,8 @@ namespace FullWebApp.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "8b208371-0865-45f7-a63f-fc3aa4a58302", null, "User", "USER" },
-                    { "f51a212b-fcbc-47c0-b75c-d033ef08c65a", null, "Admin", "ADMIN" }
+                    { "619736a2-6409-488e-8af5-5124c5302cb6", null, "User", "USER" },
+                    { "65bb85d6-285b-4537-8663-dbe3e10bfdd0", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(

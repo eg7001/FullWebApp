@@ -3,7 +3,7 @@
 namespace FullWebApp.Models;
 
 [Table("Accounti")]
-public class Accounti
+public class Account
 {
     public int? Id { get; set; }
     

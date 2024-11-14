@@ -1,6 +1,6 @@
 using FullWebApp.DTOs.UserProfileDTOs;
-using FullWebApp.Extensions;
 using FullWebApp.Interfaces;
+using FullWebApp.Extensions;
 using FullWebApp.Mappers;
 using FullWebApp.Models;
 using Microsoft.AspNetCore.Authorization;

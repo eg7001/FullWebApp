@@ -7,7 +7,7 @@ public class Transaction
     public UserProfile UserProfile { get; set; }
     
     public int? AccountId{ get; set; }
-    public Accounti Account { get; set; }
+    public Account Account { get; set; }
     
     public double Value { get; set; }
     public string? Title { get; set; }

@@ -15,7 +15,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
 
     // public DbSet<QkaTeDush> emri {get;set;}
     public DbSet<UserProfile> UserProfiles {get; set; }
-    public DbSet<Accounti> Accounts { get; set; }
+    public DbSet<Account> Accounts { get; set; }
     public DbSet<SavingGoal> SavingGoals { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
     
