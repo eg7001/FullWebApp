@@ -1,7 +1,9 @@
 using FullWebApp.Context;
 using FullWebApp.DTOs.AccountDto;
 using FullWebApp.Interfaces;
+using FullWebApp.Mappers;
 using FullWebApp.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace FullWebApp.Repositories;
@@ -34,8 +36,6 @@ public class AccountRepository: IAccountRepository
         {
             return null;
         }
-
-        exists.Name = accountDto.Name;
         exists.Name = accountDto.Name;
         exists.Type = accountDto.Type;
         exists.Balance = accountDto.Balance;

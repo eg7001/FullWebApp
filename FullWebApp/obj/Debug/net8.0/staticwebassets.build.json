@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "1N2kVIaqH9h7mcVR2/HHo3bWvXJTzZ8VafScD1u+1GI=",
+  "Hash": "6p6kQxHv9BXOADaKGjt+DeJ3YrrYbzurWW5gOutabw8=",
   "Source": "FullWebApp",
   "BasePath": "_content/FullWebApp",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

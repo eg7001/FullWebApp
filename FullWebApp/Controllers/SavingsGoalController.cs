@@ -1,7 +1,10 @@
 ﻿using System.Runtime.InteropServices.JavaScript;
 using FullWebApp.DTOs.SavigngsGoalDto;
+using FullWebApp.Extensions;
 using FullWebApp.Interfaces;
+using FullWebApp.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FullWebApp.Controllers;
@@ -10,30 +13,51 @@ namespace FullWebApp.Controllers;
 public class SavingsGoalController: ControllerBase
 {
     private readonly ISavingsGoalRepository _savingsRepo;
-    /*
-    public SavingsGoalController(ISavingsGoalRepository savingsRepo)
+    private readonly UserManager<AppUser> _userRepo;
+    
+    public SavingsGoalController(ISavingsGoalRepository savingsRepo, UserManager<AppUser> userRepo)
     {
         _savingsRepo = savingsRepo;
+        _userRepo = userRepo;
     }
     [HttpPost]
     [Route("createSaving")]
-    public async Task<IActionResult> CreateSavingsGoal(SavingsGoalDto dto)
+    public async Task<IActionResult> CreateSavingsGoal([FromBody] CreateSavingsGoalDto dto)
     {
-        return Ok("Hale tu e ba ");
+        if(!ModelState.IsValid){
+            return BadRequest(ModelState);
+        }
+        var userName = User.GetUsername();
+        var appUser = await _userRepo.FindByNameAsync(userName);
+
+        var savingGoal = await _savingsRepo.CreateSavingGoal(dto.ToSavingGoalFromCreateDto(appUser.Id));
+
+        return Ok(savingGoal);    
     }
 
     [HttpGet]
-    [Route("getById")]
-    public async Task<IActionResult> GetSavingsById()
+    [Route("getById/{id:int}")]
+    public async Task<IActionResult> GetSavingsById([FromRoute] int id)
     {   
-        return Ok(); 
+        if(!ModelState.IsValid){
+            return BadRequest(ModelState);
+        }
+        var userName = User.GetUsername();
+        var savingGoal = await _savingsRepo.GetSavingGoalById(id);
+        return Ok(savingGoal.ToSavingDtoFromSaving(userName)); 
     }
     
     [HttpGet]
     [Route("getByUser")]
-    public async Task<IActionResult> GetSavingsGoalByUser( /* duhet me pas diqka qitu po qka se di //////)
+    public async Task<IActionResult> GetSavingsGoalByAccount() // duhet me pas diqka qitu po qka se di //////
     {
-        return Ok("Aight");
+        if(!ModelState.IsValid){
+            return BadRequest(ModelState);
+        }
+        var userName = User.GetUsername();
+        var appUser = await _userRepo.FindByNameAsync(userName);
+        var savingGoal = await _savingsRepo.GetSavingByUser(appUser.Id);
+        return Ok(savingGoal);
     }
 
     [HttpPut]
@@ -49,5 +73,5 @@ public class SavingsGoalController: ControllerBase
     {
         return Ok("Ne punime e siper");
     }
-    */
+   
 }

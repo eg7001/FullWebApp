@@ -432,9 +432,13 @@ C:/Users/PC-shpi/RiderProjects/FullWebApp/FullWebApp/bin/Debug/net8.0/runtimes/w
 /home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.FullWebApp.props
 /home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/staticwebassets.pack.json
 /home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/scopedcss/bundle/FullWebApp.styles.css
-/home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/FullWebApp.csproj.CopyComplete
 /home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/FullWebApp.dll
 /home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/refint/FullWebApp.dll
 /home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/FullWebApp.pdb
 /home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/FullWebApp.genruntimeconfig.cache
 /home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/ref/FullWebApp.dll
+/home/paradox/Programim/FullWebApp/FullWebApp/bin/Debug/net8.0/FullWebApp.staticwebassets.endpoints.json
+/home/paradox/Programim/FullWebApp/FullWebApp/bin/Debug/net8.0/Newtonsoft.Json.dll
+/home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/staticwebassets.build.endpoints.json
+/home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/staticwebassets/msbuild.FullWebApp.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+/home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/FullWebApp.csproj.Up2Date

@@ -89,11 +89,11 @@ public class UserProfieController: ControllerBase
         {
             return BadRequest(ModelState);
         }
-        var model = await _profileRepo.DeleteAsync(id);
+        var model =  await _profileRepo.DeleteAsync(id);
         if (model == null)
         {
             return NotFound("Ja ke huq diqka");
         }
-        return Ok(model.ToDtoFromProfile());
+        return Ok(model);
     }
 } 

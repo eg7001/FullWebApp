@@ -27,7 +27,7 @@ public class   AccountController: ControllerBase
     [Route("{id:int}")]
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
-        if (ModelState!.IsValid)
+        if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
@@ -55,5 +55,34 @@ public class   AccountController: ControllerBase
          var account = dto.ToAccountFromDto(appUser.Id);
          await _accountRepo.CreateAccount(account);
          return Ok(dto);
+    }
+    [Authorize]
+    [HttpPut]
+    [Route("{id:int}")]
+    public async Task<IActionResult> UpdateAcount([FromRoute] int id, [FromBody] CreateAccountDto dto){
+            if(!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
+            var accountModel = await _accountRepo.UpdateAccount(id,dto);
+            if(accountModel == null){
+                return BadRequest("This account doesn't exist");
+            }
+            
+
+        return Ok(accountModel.ToReturnFromAccount());
+    }
+
+    [Authorize]
+    [HttpDelete]
+    [Route("removeAcc/{id:int}")]
+    public async Task<IActionResult> DeleteAccount([FromRoute] int id){
+        if(!ModelState.IsValid){
+              return BadRequest(ModelState);
+        }
+        var account = await _accountRepo.DeleteAsync(id);
+        if(account == null){
+            return BadRequest("Account not found");
+        }
+        return Ok(account);
     }
 }
