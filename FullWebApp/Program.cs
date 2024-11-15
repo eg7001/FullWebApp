@@ -56,7 +56,6 @@ var connectionSring = builder.Configuration.GetConnectionString("DefaultConnecti
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseMySql(connectionSring,ServerVersion.AutoDetect(connectionSring));
-    
 });
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>

@@ -2,9 +2,11 @@ using FullWebApp.Context;
 using FullWebApp.DTOs.SavigngsGoalDto;
 using FullWebApp.Interfaces;
 using FullWebApp.Models;
+using FullWebApp.Mappers;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using FullWebApp.DTOs.UpdateSavingsGoalDto;
 
 namespace FullWebApp.Repositories;
 
@@ -26,9 +28,15 @@ public class SavingsGoalRepository : ISavingsGoalRepository
         return savingGoal;
     }
 
-    public Task<SavingGoal?> DeleteSavingGoal(int id)
+    public async Task<SavingGoal?> DeleteSavingGoal(int id)
     {
-        throw new NotImplementedException();
+        var savingGoal = await _dbContext.SavingGoals.FirstOrDefaultAsync(x => x.Id == id);
+        if(savingGoal == null){
+            return null;
+        }
+        _dbContext.SavingGoals.Remove(savingGoal);
+        await _dbContext.SaveChangesAsync();
+        return savingGoal;
     }
 
     public async Task<SavingGoal?> GetSavingGoalById(int id)
@@ -37,10 +45,21 @@ public class SavingsGoalRepository : ISavingsGoalRepository
     }
     public async Task<List<SavingGoal?>> GetSavingByUser(string appUserId){
        var savingGoal = _dbContext.SavingGoals.Where(a => a.AppUserId == appUserId);
-       return await savingGoal.ToListAsync(); 
+       var goals = await savingGoal.ToListAsync();
+
+       return goals;
     }
-    public Task<SavingGoal?> UpdateSavingGoal(int id, CreateSavingsGoalDto dto)
+    public async Task<SavingGoal?> UpdateSavingGoal(int id, UpdateSavingsGoalDto dto)
     {
-        throw new NotImplementedException();
+        var savingGoal = await _dbContext.SavingGoals.FirstOrDefaultAsync(x => x.Id == id);
+        if(savingGoal == null){
+            return null;
+        }
+        savingGoal.Name = dto.Name;
+        savingGoal.Target = dto.Target;
+        savingGoal.Current = dto.Current;
+        savingGoal.Deadline = dto.Deadline; 
+        await _dbContext.SaveChangesAsync();
+        return savingGoal;
     }
 }
