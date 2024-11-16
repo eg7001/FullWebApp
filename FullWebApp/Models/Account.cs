@@ -2,7 +2,7 @@
 
 namespace FullWebApp.Models;
 
-[Table("Accounti")]
+[Table("Account")]
 public class Account
 {
     public int? Id { get; set; }

@@ -7,5 +7,5 @@ public class Transaction
     public Account Account { get; set; }
     public double Value { get; set; }
     public string? Title { get; set; }
-    public bool IsIncime { get; set; }
+    public bool IsIncome { get; set; }
 }

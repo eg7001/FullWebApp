@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241114134203_Initial")]
+    [Migration("20241116124222_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -55,7 +55,7 @@ namespace FullWebApp.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Accounti");
+                    b.ToTable("Account");
                 });
 
             modelBuilder.Entity("FullWebApp.Models.AppUser", b =>
@@ -142,7 +142,7 @@ namespace FullWebApp.Migrations
                     b.Property<double?>("Current")
                         .HasColumnType("double");
 
-                    b.Property<DateTime>("Deadline")
+                    b.Property<DateTime?>("Deadline")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
@@ -169,7 +169,7 @@ namespace FullWebApp.Migrations
                     b.Property<int?>("AccountId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsIncime")
+                    b.Property<bool>("IsIncome")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Title")
@@ -245,13 +245,13 @@ namespace FullWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "65bb85d6-285b-4537-8663-dbe3e10bfdd0",
+                            Id = "e785e7f6-c16e-4262-8eff-14b5d61f5c8c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "619736a2-6409-488e-8af5-5124c5302cb6",
+                            Id = "0f187ef0-d9c4-4681-9baa-a3233bb83472",
                             Name = "User",
                             NormalizedName = "USER"
                         });

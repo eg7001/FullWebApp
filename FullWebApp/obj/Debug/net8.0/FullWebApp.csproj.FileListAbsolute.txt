@@ -442,3 +442,4 @@ C:/Users/PC-shpi/RiderProjects/FullWebApp/FullWebApp/bin/Debug/net8.0/runtimes/w
 /home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/staticwebassets.build.endpoints.json
 /home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/staticwebassets/msbuild.FullWebApp.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 /home/paradox/Programim/FullWebApp/FullWebApp/obj/Debug/net8.0/FullWebApp.csproj.Up2Date
+/home/pdox/Programmim/FullWebApp/FullWebApp/bin/Debug/net8.0/Newtonsoft.Json.dll

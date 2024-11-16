@@ -98,7 +98,7 @@ namespace FullWebApp.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Accounti",
+                name: "Account",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -115,9 +115,9 @@ namespace FullWebApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accounti", x => x.Id);
+                    table.PrimaryKey("PK_Account", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Accounti_AspNetUsers_AppUserId",
+                        name: "FK_Account_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
@@ -238,7 +238,7 @@ namespace FullWebApp.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Target = table.Column<double>(type: "double", nullable: false),
                     Current = table.Column<double>(type: "double", nullable: true),
-                    Deadline = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Deadline = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
@@ -289,15 +289,15 @@ namespace FullWebApp.Migrations
                     Value = table.Column<double>(type: "double", nullable: false),
                     Title = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    IsIncime = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    IsIncome = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transactions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Transactions_Accounti_AccountId",
+                        name: "FK_Transactions_Account_AccountId",
                         column: x => x.AccountId,
-                        principalTable: "Accounti",
+                        principalTable: "Account",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Transactions_UserProfiles_UserProfileId",
@@ -313,13 +313,13 @@ namespace FullWebApp.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "619736a2-6409-488e-8af5-5124c5302cb6", null, "User", "USER" },
-                    { "65bb85d6-285b-4537-8663-dbe3e10bfdd0", null, "Admin", "ADMIN" }
+                    { "0f187ef0-d9c4-4681-9baa-a3233bb83472", null, "User", "USER" },
+                    { "e785e7f6-c16e-4262-8eff-14b5d61f5c8c", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Accounti_AppUserId",
-                table: "Accounti",
+                name: "IX_Account_AppUserId",
+                table: "Account",
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
@@ -408,7 +408,7 @@ namespace FullWebApp.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Accounti");
+                name: "Account");
 
             migrationBuilder.DropTable(
                 name: "UserProfiles");
