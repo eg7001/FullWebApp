@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "/home/pdox/Programmim/FullWebApp/FullWebApp/FullWebApp.csproj": {}
+    "/home/paradox/Programim/FullWebApp/FullWebApp/FullWebApp.csproj": {}
   },
   "projects": {
-    "/home/pdox/Programmim/FullWebApp/FullWebApp/FullWebApp.csproj": {
+    "/home/paradox/Programim/FullWebApp/FullWebApp/FullWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/pdox/Programmim/FullWebApp/FullWebApp/FullWebApp.csproj",
+        "projectUniqueName": "/home/paradox/Programim/FullWebApp/FullWebApp/FullWebApp.csproj",
         "projectName": "FullWebApp",
-        "projectPath": "/home/pdox/Programmim/FullWebApp/FullWebApp/FullWebApp.csproj",
-        "packagesPath": "/home/pdox/.nuget/packages/",
-        "outputPath": "/home/pdox/Programmim/FullWebApp/FullWebApp/obj/",
+        "projectPath": "/home/paradox/Programim/FullWebApp/FullWebApp/FullWebApp.csproj",
+        "packagesPath": "/home/paradox/.nuget/packages/",
+        "outputPath": "/home/paradox/Programim/FullWebApp/FullWebApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/pdox/.nuget/NuGet/NuGet.Config"
+          "/home/paradox/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "/usr/lib64/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,7 +33,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -98,6 +105,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[8.0.10, 8.0.10]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -106,7 +119,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.100-rc.2.24474.1/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
