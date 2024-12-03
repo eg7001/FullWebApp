@@ -155,7 +155,7 @@ namespace FullWebApp.Migrations
                     b.ToTable("SavingGoals");
                 });
 
-            modelBuilder.Entity("FullWebApp.Models.Transaction", b =>
+            modelBuilder.Entity("FullWebApp.Models.Transactions", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -163,7 +163,7 @@ namespace FullWebApp.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AccountId")
+                    b.Property<int>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsIncome")
@@ -172,17 +172,12 @@ namespace FullWebApp.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UserProfileId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Value")
                         .HasColumnType("double");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
-
-                    b.HasIndex("UserProfileId");
 
                     b.ToTable("Transactions");
                 });
@@ -242,13 +237,13 @@ namespace FullWebApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e785e7f6-c16e-4262-8eff-14b5d61f5c8c",
+                            Id = "af8954e4-97d5-416a-b5a3-74a41b652572",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0f187ef0-d9c4-4681-9baa-a3233bb83472",
+                            Id = "0448fd73-9929-48f4-a1b7-45a6d2d49290",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -378,21 +373,15 @@ namespace FullWebApp.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("FullWebApp.Models.Transaction", b =>
+            modelBuilder.Entity("FullWebApp.Models.Transactions", b =>
                 {
                     b.HasOne("FullWebApp.Models.Account", "Account")
                         .WithMany("Transactions")
-                        .HasForeignKey("AccountId");
-
-                    b.HasOne("FullWebApp.Models.UserProfile", "UserProfile")
-                        .WithMany()
-                        .HasForeignKey("UserProfileId")
+                        .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Account");
-
-                    b.Navigation("UserProfile");
                 });
 
             modelBuilder.Entity("FullWebApp.Models.UserProfile", b =>

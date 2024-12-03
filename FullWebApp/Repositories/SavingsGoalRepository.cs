@@ -23,6 +23,7 @@ public class SavingsGoalRepository : ISavingsGoalRepository
 
     public async Task<SavingGoal?> CreateSavingGoal(SavingGoal savingGoal)
     {
+       if(savingGoal.Id == 123) 
        await _dbContext.AddAsync(savingGoal);
        await _dbContext.SaveChangesAsync();
         return savingGoal;

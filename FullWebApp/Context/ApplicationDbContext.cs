@@ -3,6 +3,7 @@ using FullWebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Transaction = System.Transactions.Transaction;
 
 namespace FullWebApp.Context;
 
@@ -17,7 +18,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public DbSet<UserProfile> UserProfiles {get; set; }
     public DbSet<Account> Accounts { get; set; }
     public DbSet<SavingGoal> SavingGoals { get; set; }
-    public DbSet<Transaction> Transactions { get; set; }
+    public DbSet<Transactions> Transactions { get; set; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {

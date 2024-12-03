@@ -284,8 +284,7 @@ namespace FullWebApp.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserProfileId = table.Column<int>(type: "int", nullable: false),
-                    AccountId = table.Column<int>(type: "int", nullable: true),
+                    AccountId = table.Column<int>(type: "int", nullable: false),
                     Value = table.Column<double>(type: "double", nullable: false),
                     Title = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -298,11 +297,6 @@ namespace FullWebApp.Migrations
                         name: "FK_Transactions_Account_AccountId",
                         column: x => x.AccountId,
                         principalTable: "Account",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Transactions_UserProfiles_UserProfileId",
-                        column: x => x.UserProfileId,
-                        principalTable: "UserProfiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -313,8 +307,8 @@ namespace FullWebApp.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0f187ef0-d9c4-4681-9baa-a3233bb83472", null, "User", "USER" },
-                    { "e785e7f6-c16e-4262-8eff-14b5d61f5c8c", null, "Admin", "ADMIN" }
+                    { "0448fd73-9929-48f4-a1b7-45a6d2d49290", null, "User", "USER" },
+                    { "af8954e4-97d5-416a-b5a3-74a41b652572", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -370,11 +364,6 @@ namespace FullWebApp.Migrations
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_UserProfileId",
-                table: "Transactions",
-                column: "UserProfileId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UserProfiles_AppUserId",
                 table: "UserProfiles",
                 column: "AppUserId");
@@ -405,13 +394,13 @@ namespace FullWebApp.Migrations
                 name: "Transactions");
 
             migrationBuilder.DropTable(
+                name: "UserProfiles");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Account");
-
-            migrationBuilder.DropTable(
-                name: "UserProfiles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

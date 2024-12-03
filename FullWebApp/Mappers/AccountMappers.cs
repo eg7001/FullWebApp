@@ -24,4 +24,14 @@ public static class AccountMappers
             Balance = account.Balance
         };
     }
+
+    public static CreateAccountDto ToCreateDtoFromAccount(this Account account)
+    {
+        return new CreateAccountDto
+        {
+            Name = account.Name,
+            Type = account.Type,
+            Balance = account.Balance
+        };
+    }
 }
