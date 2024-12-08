@@ -31,4 +31,22 @@ public class TransactionController : ControllerBase
         await _transactionRepo.CreateTransaction(transactionsDto.ToTransactionFromCreateDto());
         return Ok(transactionsDto);
     }
+
+    [Authorize]
+    [HttpDelete]
+    [Route("delete/{id:int}")]
+    public async Task<IActionResult> DeleteTransaction([FromRoute] int id)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var transaction = await _transactionRepo.DeleteTransaction(id);
+        if (transaction == null)
+        {
+            return NotFound("Nuk u gjet");
+        }
+        return Ok(transaction);
+    }
 }
