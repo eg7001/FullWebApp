@@ -62,11 +62,10 @@ public class UserProfileRepository : IUserProfileRepository
         await _dbContext.SaveChangesAsync();
         return userProfileModel;
     }
-    public async Task<List<UserProfile?>> GetByUser(string userId){
-
+    public async Task<List<UserProfile?>> GetByUser(string userId)
+    {
         var appUser = await _userRepo.FindByIdAsync(userId);
         var userProfiles = _dbContext.UserProfiles.Where(a => a.AppUser.Id == userId);
-
 
         return await userProfiles.ToListAsync();
     }

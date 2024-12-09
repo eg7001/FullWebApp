@@ -15,4 +15,15 @@ public static class TransactionMappers
             IsIncome = transaction.IsIncome
         };
     }
+
+    public static ReturnDto ToReturnDtoFromTransaction(this Transactions transactions)
+    {
+        return new ReturnDto()
+        {
+            AccountId = transactions.AccountId,
+            Value = transactions.Value,
+            Title = transactions.Title,
+            IsIncome = transactions.IsIncome
+        };
+    }
 }

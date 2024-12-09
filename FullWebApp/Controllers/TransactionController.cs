@@ -49,4 +49,19 @@ public class TransactionController : ControllerBase
         }
         return Ok(transaction);
     }
+
+    [Authorize]
+    [HttpGet]
+    [Route("getByAccount/{id:int}")]
+    public async Task<IActionResult> GetByAccount([FromRoute] int accId)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        var transaction = await _transactionRepo.GetByAccount(accId);
+        var transactionDtos = transaction.Select(s => s.ToReturnDtoFromTransaction());
+
+        return Ok(transactionDtos);
+    }
 }

@@ -4,6 +4,7 @@ using FullWebApp.DTOs.TransactionsDto;
 using FullWebApp.Interfaces;
 using FullWebApp.Mappers;
 using FullWebApp.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace FullWebApp.Repositories;
@@ -12,11 +13,12 @@ public class TransactionRepository : ITransactionRepository
 {
     private readonly ApplicationDbContext _dbContext;
     private readonly IAccountRepository _accountRepo;
-
-    public TransactionRepository(ApplicationDbContext dbContext, IAccountRepository accountRepo)
+    private readonly UserManager<AppUser> _userRepo;
+    public TransactionRepository(ApplicationDbContext dbContext, IAccountRepository accountRepo, UserManager<AppUser> userRepo)
     {
         _dbContext = dbContext;
         _accountRepo = accountRepo;
+        _userRepo = userRepo;
     }
 
     public async Task<Transactions?> CreateTransaction(Transactions transaction)
@@ -73,8 +75,10 @@ public class TransactionRepository : ITransactionRepository
         throw new NotImplementedException();
     }
 
-    public Task<List<Transactions?>> GetByAccount(int id)
+    public async Task<List<Transactions?>> GetByAccount(int id)
     {
-        throw new NotImplementedException();
+        var transactions = _dbContext.Transactions.Where(a => a.AccountId == id);
+
+        return await transactions.ToListAsync();
     }
 }
