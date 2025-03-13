@@ -4584,7 +4584,6 @@
       "packagesPath": "/home/pdox/.nuget/packages/",
       "outputPath": "/home/pdox/Programmim/FullWebApp/FullWebApp/obj/",
       "projectStyle": "PackageReference",
-      "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
         "/home/pdox/.nuget/NuGet/NuGet.Config"
       ],
@@ -4678,7 +4677,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.111/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.113/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
